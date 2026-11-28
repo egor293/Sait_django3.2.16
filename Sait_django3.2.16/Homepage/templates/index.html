@@ -1,0 +1,250 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RedWeb — RedFox</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+  <header class="topbar">
+    <a href="#top" class="brand">
+      <img src="{% static 'resources/Lisa/Image.png' %}" alt="Лиса">
+      <span>RedWeb</span>
+    </a>
+
+    <nav class="main-nav">
+      <a href="#top" class="nav-link">Главная</a>
+      <a href="#cats" class="nav-link">🐾 Котики</a>
+      <a href="#creative" class="nav-link">🎧 Моё творчество</a>
+      <button type="button" id="videosNav" class="nav-link">🎬 Видео</button>
+      <button type="button" id="settingsOpen" class="nav-link">⚙ Настройки</button>
+    </nav>
+
+    <div class="auth-area">
+      <span id="userInfo">Гость</span>
+      <a href="{% url 'login' %}" id="loginTop" class="mini-btn">Войти</a>
+      <a href="{% url 'register' %}" id="registerTop" class="mini-btn primary">Регистрация</a>
+      <button type="button" id="logoutBtn" class="mini-btn hidden">Выйти</button>
+    </div>
+  </header>
+
+  <main id="top" class="wrap">
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow">Добро пожаловать на мой сайт</div>
+        <h1>Привет! Я <span>RedFox</span> 🦊</h1>
+        <p>Это мой уголок в интернете: творчество, музыка, видео и, конечно, котики.</p>
+        <div class="hero-actions">
+          <a href="#creative" class="button primary">Моё творчество</a>
+          <a href="#cats" class="button ghost">К сборнику котиков</a>
+        </div>
+      </div>
+      <div class="fox-art">
+        <img src="{% static 'resources/IA/IA5.png' %}" alt="Лиса RedFox">
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <div class="section-heading">
+        <div class="eyebrow">Немного обо мне</div>
+        <h2>Это RedFox!</h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-card glass">
+          <div class="emoji">👋</div>
+          <h3>Привет!</h3>
+          <p>Рад видеть тебя на моём сайте.</p>
+        </div>
+        <div class="about-card glass">
+          <div class="emoji">🎲</div>
+          <h3>Мои интересы</h3>
+          <p>Люблю настольные игры и программирование.</p>
+        </div>
+        <div class="about-card glass">
+          <div class="emoji">🐱</div>
+          <h3>Люблю животных</h3>
+          <p>Котики, собаки и много других пушистых друзей!</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="creative" class="section">
+      <div class="section-heading">
+        <div class="eyebrow">Звуки моего мира</div>
+        <h2>🎧 Моё творчество</h2>
+        <p>Здесь можно послушать мои треки и найти меня в соцсетях.</p>
+      </div>
+      <div class="creative-grid">
+        <div class="music-card glass">
+          <div class="music-head">
+            <div class="music-icon">♫</div>
+            <div>
+              <h3>Моя музыка</h3>
+              <p>Авторские треки RedFox</p>
+            </div>
+          </div>
+          <audio controls>
+            <source src="{% static 'resources/music/my-track.mp3' %}" type="audio/mpeg">
+            Твой браузер не поддерживает аудиоплеер.
+          </audio>
+          <a href="https://yandex.ru" target="_blank" rel="noopener" class="text-link">Открыть трек в Яндекс Музыке ↗</a>
+        </div>
+
+        <div class="socials-card glass">
+          <h3>Мои площадки</h3>
+          <p>Ссылки на мои страницы — добавлю сюда.</p>
+          <p class="hint">пока только Youtube</p>
+          <div class="social-links">
+            <a href="https://youtube.com" target="_blank" rel="noopener" class="social-btn">▶ YouTube</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="cats" class="section">
+      <div class="section-heading">
+        <div class="eyebrow">Пушистая коллекция</div>
+        <h2>🐾 Сборник котиков</h2>
+      </div>
+      <div class="cat-grid">
+        <figure>
+          <img src="{% static 'resources/CatNaSait/cat3.gif' %}" alt="Котик 1">
+          <figcaption>Мой любимчик)</figcaption>
+        </figure>
+        <figure>
+          <img src="{% static 'resources/CatNaSait/cat10.jpeg' %}" alt="Котик 2">
+          <figcaption>Любитель позировать на камеру</figcaption>
+        </figure>
+        <figure>
+          <img src="{% static 'resources/CatNaSait/cat2.jpg' %}" alt="Котик 3">
+          <figcaption>Удивлёный</figcaption>
+        </figure>
+        <figure>
+          <img src="{% static 'resources/CatNaSait/cat12.jpeg' %}" alt="Котик 4">
+          <figcaption>Немного пошалил</figcaption>
+        </figure>
+        <figure>
+          <img src="{% static 'resources/CatNaSait/cat16.jpeg' %}" alt="Котик 5">
+          <figcaption>Любимая котость</figcaption>
+        </figure>
+        <figure>
+          <img src="{% static 'resources/CatNaSait/cat18.jpeg' %}" alt="Котик 6">
+          <figcaption>Растроился</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="videos" class="section hidden">
+      <div class="section-heading">
+        <div class="eyebrow">Только для участников</div>
+        <h2>🎬 Видео</h2>
+        <p>Здесь будут мои видео. Добавь YouTube-ссылки в блок video-grid.</p>
+      </div>
+      <div class="video-grid">
+        <div class="video-placeholder glass">
+          <div class="play">▶</div>
+          <h3>Моё первое видео</h3>
+          <p>Вставь сюда ссылку на своё видео YouTube.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>🦊 RedFox · RedWeb</span>
+    <a href="#top">Наверх ↑</a>
+  </footer>
+
+  <div id="settingsModal" class="modal hidden">
+    <div class="settings-panel">
+      <button type="button" id="settingsClose" class="close">×</button>
+      <div class="eyebrow">Персонализация</div>
+      <h2>⚙ Настройки сайта</h2>
+
+      <div class="setting-group">
+        <h3>🎨 Внешний вид</h3>
+        <label>
+          Цвет страницы
+          <select id="pageTheme">
+            <option value="sunset">Тёплый закат</option>
+            <option value="lavender">Лавандовый</option>
+            <option value="ocean">Океан</option>
+            <option value="forest">Лесной</option>
+            <option value="dark">Тёмный</option>
+            <option value="crimson">Рубиновый</option>
+            <option value="cyber">Киберпанк</option>
+            <option value="sakura">Сакура</option>
+            <option value="midnight">Полночь</option>
+            <option value="gold">Золотой</option>
+            <option value="mint">Мятный</option>
+            <option value="ice">Ледяной</option>
+          </select>
+        </label>
+
+        <label>
+          Размытие верхней панели: <strong id="blurNumber">12</strong> px
+          <input type="range" id="blurRange" min="0" max="24" value="12">
+        </label>
+      </div>
+
+      <div class="setting-group">
+        <h3>🔒 Настройки аккаунта</h3>
+
+        <div id="lockedAccount" class="locked-content">
+          <div class="lock-icon">🔒</div>
+          <p>Что-бы открыть этот раздел зарегистрируйтесь!</p>
+          <div class="inline-actions">
+            <a href="{% url 'register' %}" class="button primary">Регистрация</a>
+            <a href="{% url 'login' %}" class="button ghost">Вход</a>
+          </div>
+        </div>
+
+        <div id="accountSettings" class="hidden">
+          <div class="profile-row">
+            <img id="avatarPreview" src="{% static 'resources/default_avatar.jpg' %}" alt="Аватар">
+            <div>
+              <strong id="profileLabel">Мой профиль</strong>
+              <p class="hint">Настройки твоего аккаунта</p>
+            </div>
+          </div>
+
+          <label>
+            Никнейм
+            <input type="text" id="nickname" minlength="2" maxlength="24">
+          </label>
+
+          <label>
+            Аватар
+            <input type="file" id="avatarInput" accept="image/*">
+          </label>
+
+          <label>
+            Язык
+            <select id="language">
+              <option value="ru">Русский</option>
+              <option value="en">English</option>
+            </select>
+          </label>
+
+          <label>
+            О себе
+            <textarea id="bio" rows="3" maxlength="160"></textarea>
+          </label>
+
+          <div id="settingsMessage" class="form-message"></div>
+          <button type="button" id="saveProfile" class="button primary full">Сохранить профиль</button>
+        </div>
+      </div>
+
+      <p class="hint">Настройки внешнего вида сохраняются в этом браузере.</p>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="{% static 'js/app.js' %}"></script>
+</body>
+</html>

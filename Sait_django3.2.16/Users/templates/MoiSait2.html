@@ -1,0 +1,126 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Регистрация — RedWeb</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <style>
+    :root{color-scheme:dark;--bg:#101018;--panel:rgba(27,27,42,.88);--line:rgba(255,255,255,.11);--muted:#a5a4b8;--accent:#ff5b55;--accent2:#ff8a5b}
+    *{box-sizing:border-box}
+    body.auth-page{min-height:100vh;margin:0;padding:28px 18px;display:grid;place-items:center;background:var(--page);background-attachment:fixed;font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink)}
+    .auth-panel{width:min(100%,460px);padding:clamp(26px,5vw,42px);border:1px solid var(--line);border-radius:26px;background:var(--glass);color:var(--ink);box-shadow:0 24px 80px rgba(0,0,0,.22);backdrop-filter:blur(22px);animation:authIn .7s cubic-bezier(.2,.8,.2,1) both}
+    @keyframes authIn{from{opacity:0;transform:translateY(22px) scale(.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+    .back-link{display:inline-flex;align-items:center;gap:8px;color:var(--muted);text-decoration:none;font-size:14px;margin-bottom:30px;transition:color .2s}
+    .back-link:hover{color:#fff}
+    .auth-top{display:flex;align-items:center;gap:15px;margin-bottom:24px}
+    .auth-emoji{width:58px;height:58px;display:grid;place-items:center;border-radius:18px;background:linear-gradient(135deg,rgba(255,91,85,.24),rgba(255,138,91,.10));border:1px solid rgba(255,130,100,.25);font-size:30px}
+    h1{font-size:clamp(28px,6vw,35px);line-height:1.12;letter-spacing:-.8px;margin:0 0 9px}
+    .intro{color:var(--muted);margin:0 0 28px;line-height:1.6;font-size:14px}
+    form{display:grid;gap:17px}
+    label{display:grid;gap:8px;font-size:13px;font-weight:650;color:var(--ink)}
+    input{width:100%;min-width:0;padding:14px 15px;border:1px solid var(--line);border-radius:13px;background:rgba(255,255,255,.55);color:var(--ink);font:inherit;font-size:15px;outline:none;transition:border-color .2s,box-shadow .2s,background .2s}
+    input::placeholder{color:color-mix(in srgb,var(--ink) 55%,transparent)}
+    input:focus{border-color:var(--accent);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 14%,transparent);background:rgba(255,255,255,.78)}
+    .password-row{display:flex;gap:8px}
+    .password-row input{flex:1}
+    .toggle{flex:0 0 auto;padding:0 13px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.06);color:var(--ink);font:inherit;font-size:13px;cursor:pointer}
+    .toggle:hover{background:rgba(255,255,255,.11)}
+    .button.primary{width:100%;min-height:50px;margin-top:5px;border:0;border-radius:14px;background:linear-gradient(110deg,var(--accent),var(--accent2));color:white;font:inherit;font-weight:750;font-size:15px;cursor:pointer;box-shadow:0 10px 26px color-mix(in srgb,var(--accent) 25%,transparent);transition:transform .2s,filter .2s}
+    .button.primary:hover{transform:translateY(-2px);filter:brightness(1.08)}
+    .button.primary:active{transform:translateY(0)}
+    .form-message{min-height:20px;margin:13px 0 0;color:#ffb2a9;font-size:13px;text-align:center}
+    .auth-switch{margin:19px 0 0;text-align:center;color:var(--muted);font-size:14px}
+    .auth-switch a{color:var(--accent2);text-decoration:none;font-weight:700}
+    .auth-switch a:hover{text-decoration:underline}
+    .secure-note{display:flex;justify-content:center;gap:7px;margin-top:23px;color:var(--ink);opacity:.65;font-size:11px}
+    @media(prefers-reduced-motion:reduce){.auth-panel{animation:none}*{transition:none!important}}
+  </style>
+
+  <style id="redweb-extra-themes">
+    body[data-theme="crimson"]{--page:linear-gradient(135deg,#210710,#4b1025,#17060d);--ink:#fff0f3;--glass:#3a1022dc;--accent:#ff3158;--accent2:#a6002d;--line:#ff4b6e55}
+    body[data-theme="cyber"]{--page:linear-gradient(135deg,#080817,#19123c,#071b28);--ink:#f4f1ff;--glass:#120f30dc;--accent:#00eaff;--accent2:#b000ff;--line:#00f0ff55}
+    body[data-theme="sakura"]{--page:linear-gradient(135deg,#1b0d17,#49233c,#24101e);--ink:#fff2f8;--glass:#39192edc;--accent:#ff83bd;--accent2:#d94f91;--line:#ff83bd55}
+    body[data-theme="midnight"]{--page:linear-gradient(135deg,#080d19,#17233e,#0a1024);--ink:#edf2ff;--glass:#121c34dc;--accent:#829cff;--accent2:#455fc4;--line:#829cff55}
+    body[data-theme="gold"]{--page:linear-gradient(135deg,#171106,#493510,#201605);--ink:#fff8e6;--glass:#31240ddc;--accent:#f5c451;--accent2:#b77b18;--line:#f5c45155}
+    body[data-theme="mint"]{--page:linear-gradient(135deg,#071713,#123b31,#09251e);--ink:#edfff8;--glass:#0d2f27dc;--accent:#5de0b2;--accent2:#168d78;--line:#5de0b255}
+    body[data-theme="ice"]{--page:linear-gradient(135deg,#071521,#12364b,#0a2535);--ink:#effaff;--glass:#0e2b3cdc;--accent:#75d9ff;--accent2:#368bbd;--line:#75d9ff55}
+  </style>
+
+  <style>
+    .redirect-note{display:none;margin:16px 0 0;padding:13px 15px;border:1px solid var(--line);border-radius:13px;background:var(--glass);color:var(--ink);text-align:center;font-size:14px}
+    .redirect-note.show{display:block;animation:authIn .35s ease both}
+    .button.primary:disabled{opacity:.65;cursor:wait;transform:none}
+  </style>
+</head>
+
+
+<body class="auth-page">
+
+  <div class="auth-panel glass">
+    <a href="{% url 'home' %}" class="back-link">← На главный сайт</a>
+    <div class="auth-emoji">🦊</div>
+    <h1>Создать аккаунт</h1>
+    <p>Добро пожаловать в RedWeb<br>Введи никнейм, почту и пароль. Подтверждение по email не требуется.</p>
+
+    <form id="registerForm" method="post">
+      {% csrf_token %}
+
+      <label>
+        Никнейм
+        <input type="text" id="name" name="name" value="{{ form.name.value|default:'' }}" minlength="2" maxlength="24" required>
+      </label>
+
+      <label>
+        Электронная почта
+        <input type="email" id="email" name="email" value="{{ form.email.value|default:'' }}" required>
+      </label>
+
+      <label>
+        Пароль
+        <div class="password-row">
+          <input type="password" id="password" name="password1" minlength="8" required>
+          <button type="button" class="toggle" data-target="password">Показать</button>
+        </div>
+      </label>
+
+      <label>
+        Повтори пароль
+        <div class="password-row">
+          <input type="password" id="password2" name="password2" minlength="8" required>
+          <button type="button" class="toggle" data-target="password2">Показать</button>
+        </div>
+      </label>
+
+      <div id="msg" class="form-message">
+        {% if form.errors %}
+          Не получилось:
+          {% for field in form %}
+            {% for error in field.errors %}{{ error }} {% endfor %}
+          {% endfor %}
+          {% for error in form.non_field_errors %}{{ error }} {% endfor %}
+        {% endif %}
+      </div>
+
+      <button type="submit" class="button primary full">Создать аккаунт →</button>
+    </form>
+
+    <p style="margin-top: 18px;">Уже есть аккаунт? <a href="{% url 'login' %}">Войти</a></p>
+    <p class="hint">🔒 Пароль нужен только для входа в аккаунт</p>
+  </div>
+
+  <script>
+    document.querySelectorAll('.toggle[data-target]').forEach((toggle) => {
+      toggle.addEventListener('click', () => {
+        const field = document.getElementById(toggle.dataset.target);
+        if (!field) return;
+        const show = field.type === 'password';
+        field.type = show ? 'text' : 'password';
+        toggle.textContent = show ? 'Скрыть' : 'Показать';
+      });
+    });
+    document.body.dataset.theme = localStorage.getItem('rwTheme') || 'sunset';
+  </script>
+</body>
+</html>
